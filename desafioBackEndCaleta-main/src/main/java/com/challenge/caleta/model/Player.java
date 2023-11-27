@@ -4,22 +4,12 @@ import jakarta.persistence.*;
 
 @Entity
 public class Player {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private double balance;
 
-    public Player() {
-
-    }
-
-    public Player(Long id, double balance) {
-        this.id = id;
-        this.balance = balance;
-    }
-
+    // getters and setters
     public Long getId() {
         return id;
     }
@@ -34,13 +24,5 @@ public class Player {
 
     public void setBalance(double balance) {
         this.balance = balance;
-    }
-
-    @Override
-    public String toString() {
-        return "Player{" +
-                "id=" + id +
-                ", balance=" + balance +
-                '}';
     }
 }

@@ -1,52 +1,31 @@
 package com.challenge.caleta.model;
 
-import com.challenge.caleta.controller.PlayerController;
 import jakarta.persistence.*;
-
 @Entity
 public class Transaction {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer txn;
-
+    private Long id;
+    private Long playerId;
     private double value;
+    private String type; // "bet" or "win"
+    private boolean canceled;
 
-    private boolean active;
-
-    @Enumerated(EnumType.STRING)
-    private PlayerController.TransactionType type;
-
-    @ManyToOne
-    @JoinColumn(name = "player_id")
-    private Player player;
-
-    public Transaction() {
+    // getters and setters
+    public Long getId() {
+        return id;
     }
 
-    public Transaction(Player player, double value, PlayerController.TransactionType type) {
-        this.player = player;
-        this.value = value;
-        this.type = type;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Transaction(Integer txn, double value) {
-        this.txn = txn;
-        this.value = value;
+    public Long getPlayerId() {
+        return playerId;
     }
 
-    public Transaction(Long id, double betValue, PlayerController.TransactionType transactionType) {
-    }
-
-    public Transaction(Long playerId, String win, double winValue) {
-    }
-
-    public Integer getTxn() {
-        return txn;
-    }
-
-    public void setTxn(Integer txn) {
-        this.txn = txn;
+    public void setPlayerId(Long playerId) {
+        this.playerId = playerId;
     }
 
     public double getValue() {
@@ -57,19 +36,19 @@ public class Transaction {
         this.value = value;
     }
 
-    public boolean isActive() {
-        return active;
+    public String getType() {
+        return type;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    @Override
-    public String toString() {
-        return "Transaction{" +
-                "txn=" + txn +
-                ", value=" + value +
-                '}';
+    public boolean isCanceled() {
+        return canceled;
+    }
+
+    public void setCanceled(boolean canceled) {
+        this.canceled = canceled;
     }
 }
